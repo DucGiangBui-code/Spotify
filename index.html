@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/button.css">
+    <link rel="stylesheet" href="./Login.html">
+</head>
+
+<body>
+    <!-- header of web -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-compact-disc"></i>
+                <h1>Musicify</h1>
+            </div>
+
+            <nav>
+                <!-- From Uiverse.io by StealthWorm -->
+                <button id="login-btn" type="button" class="btn">
+                    <strong>Login Spotify</strong>
+                    <div id="container-stars">
+                        <div id="stars"></div>
+                    </div>
+
+                    <div id="glow">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <!-- body of web -->
+    <main>
+        <div class="container">
+
+            <!-- search -->
+            <section class="search-section">
+                <div class="search-container">
+                    <i class="fa-solid fa-search">
+                    </i>
+                    <input id="input-search" type="text" placeholder="Search for songs, artists, or albums">
+
+                </div>
+            </section>
+            <!-- card-section -->
+            <section class="card-section">
+                <div class="section-header">
+                    <h2>Nhạc hot Việt Nam</h2>
+                    <button class="animated-button">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                        <span class="text">PlayList</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="track-section" class="track-section">
+                    <!-- <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div>
+                    <div class="track-card">
+                        <div class="track-card-container">
+                            <img src="https://th.bing.com/th/id/OIP.VDIiQb2aRk06gZOi67vCcQHaHo?w=182&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                alt="">
+                            <h3>Em cua ngay hom qua</h3>
+                            <p>Son Tung-MTP</p>
+                        </div>
+                    </div> -->
+            </section>
+        </div>
+
+    </main>
+    <div id="modal" class="modal">
+        <div class="modal-header">
+            <div>
+                <h2 id="modal-name" class="modal-name">
+                    Tên bài hát
+                </h2>
+                <h4 id="modal-artist" class="modal-artist">Tên nghệ sĩ</h4>
+            </div>
+            <i onclick="closeModal()" class="fa-solid fa-close"></i>
+        </div>
+        <iframe id="iframe" title="Spotify Embed: Recommendation Playlist "
+            src="https://open.spotify.com/embed/track/1amowbJ9HHFFSFdg2ubM7G?utm_source=generator&theme=0" width="100%"
+            height="100%" frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div id="g_id_onload" data-client_id="PASTE_YOUR_CLIENT_ID_HERE" ...></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"
+        integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./fix/config.js"></script>
+
+    <script src="./Javascript/script.js"></script>
+</body>
+
+</html>

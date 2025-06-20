@@ -42,7 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
       userSpan.style.fontWeight = "bold";
       userSpan.style.marginLeft = "10px";
       userSpan.style.cursor = "pointer";
-      userSpan.style.background = "linear-gradient(45deg, #7877c6, #78dbff, #ff77c6, #c677ff)";
+      userSpan.style.background =
+        "linear-gradient(45deg, #7877c6, #78dbff, #ff77c6, #c677ff)";
       userSpan.style.backgroundSize = "300% 300%";
       userSpan.style.backgroundClip = "text";
       userSpan.style.webkitTextFillColor = "transparent";
@@ -68,7 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Show logout on username click
       userSpan.addEventListener("click", function () {
-        logoutBtn.style.display = logoutBtn.style.display === "none" ? "inline-block" : "none";
+        logoutBtn.style.display =
+          logoutBtn.style.display === "none" ? "inline-block" : "none";
       });
 
       // Handle logout
@@ -105,11 +107,13 @@ function setupPlaylistButton() {
 
 function setupSearchListeners() {
   const inputSearch = document.getElementById("input-search");
+  let searchTimeout; // Declare outside the event listener
+
   inputSearch.addEventListener("input", (e) => {
     const querry = e.target.value.trim();
     clearTimeout(searchTimeout); // Clear the previous timeout
-    //debounce
-    const searchTimeout = setTimeout(async () => {
+    // debounce
+    searchTimeout = setTimeout(async () => {
       if (querry) {
         const response = await getPopularTrack(querry);
         resetTrack();
@@ -232,48 +236,3 @@ async function getSpotifyToken() {
     return null;
   }
 }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const params = new URLSearchParams(window.location.search);
-//   const username = params.get("username");
-//   const loginBtn = document.getElementById("login-btn");
-//   const logo = document.querySelector(".logo");
-
-//   let userSpan = document.getElementById("user-span");
-//   let logoutBtn = document.getElementById("logout-btn");
-//   if (userSpan) userSpan.remove();
-//   if (logoutBtn) logoutBtn.remove();
-
-//   if (username) {
-//     if (loginBtn) loginBtn.style.display = "none";
-//     if (logo) {
-//       userSpan = document.createElement("span");
-//       userSpan.id = "user-span";
-//       userSpan.textContent = " | Welcome, " + username;
-//       userSpan.style.fontSize = "1rem";
-//       userSpan.style.marginLeft = "10px";
-//       userSpan.style.cursor = "pointer";
-//       logo.appendChild(userSpan);
-
-//       logoutBtn = document.createElement("button");
-//       logoutBtn.id = "logout-btn";
-//       logoutBtn.textContent = "Log out";
-//       logoutBtn.style.display = "none";
-//       logoutBtn.style.marginLeft = "10px";
-//       logo.appendChild(logoutBtn);
-
-//       userSpan.addEventListener("click", function () {
-//         logoutBtn.style.display = logoutBtn.style.display === "none" ? "inline-block" : "none";
-//       });
-
-//       logoutBtn.addEventListener("click", function () {
-//         window.location.href = window.location.pathname;
-//       });
-//     }
-//   } else {
-//     if (loginBtn) loginBtn.style.display = "inline-block";
-//     if (userSpan) userSpan.remove();
-//     if (logoutBtn) logoutBtn.remove();
-//   }
-// });
-

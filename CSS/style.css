@@ -186,7 +186,7 @@ main .card-section .section-header h2 {
 
 .track-section .track-card p {
   opacity: 0.8;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
@@ -241,4 +241,66 @@ main .card-section .section-header h2 {
 i {
   font-size: 26px;
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .track-section .track-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 5px;
+  }
+  header .container .logo h1 {
+    font-size: 2rem;
+  }
+  .search-container {
+    flex-direction: column;
+    padding: 0 5px;
+    max-width: 100vw;
+  }
+  .search-container input {
+    font-size: 1rem;
+    padding: 14px 15px 14px 40px;
+  }
+  main .card-section .section-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .track-section {
+    gap: 10px;
+  }
+  .track-section .track-card {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 10px 5px;
+  }
+  .track-section .track-card-container {
+    padding: 10px 0;
+    max-width: 100vw;
+  }
+  .track-section .track-card img {
+    height: 120px;
+    border-radius: 12px;
+  }
+  .track-section .track-card h3 {
+    font-size: 1.1rem;
+  }
+  .track-section .track-card p {
+    font-size: 0.95rem;
+  }
+  .modal {
+    width: 95vw;
+    height: auto;
+    min-height: 200px;
+    padding: 10px;
+  }
+  .modal-header {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

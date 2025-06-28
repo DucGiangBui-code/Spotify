@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/button.css">
@@ -41,13 +42,17 @@
         <div class="container">
 
             <!-- search -->
-            <section class="search-section">
+            <section class="search-section" style="display: flex; align-items: center; gap: 16px;">
                 <div class="search-container">
                     <i class="fa-solid fa-search">
                     </i>
                     <input id="input-search" type="text" placeholder="Search for songs, artists, or albums">
-
                 </div>
+                <button id="album-btn" class="btn"
+                    style="margin-left:10px; color: white;  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px;">
+                    Album<span id="album-count"
+                        style="background:#c677ff;color:#fff;border-radius:50%;padding:2px 8px;font-size:14px;">0</span>
+                </button>
             </section>
             <!-- card-section -->
             <section class="card-section">
@@ -132,6 +137,7 @@
                                 alt="">
                             <h3>Em cua ngay hom qua</h3>
                             <p>Son Tung-MTP</p>
+                            
                         </div>
                     </div>
                     <div class="track-card">
@@ -163,8 +169,14 @@
         </iframe>
     </div>
     <div id="g_id_onload" data-client_id="PASTE_YOUR_CLIENT_ID_HERE" ...></div>
+    <button id="back-home-btn" class="btn"
+        style="margin: 10px 0 10px 10px; display: none; color: #fff; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 15px;">Back
+        to Home</button>
+    <div id="toast"
+        style="position:fixed; top:30px; right:30px; z-index:9999; display:none; min-width:200px; padding:16px 24px; border-radius:8px; font-size:16px; font-weight:bold; box-shadow:0 2px 12px rgba(0,0,0,0.15); background:linear-gradient(90deg,#c677ff,#78dbff);color:#fff;transition:all 0.3s;">
+    </div>
 
-
+    <!-- <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"
         integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

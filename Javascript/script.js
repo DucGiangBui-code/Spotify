@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initialApp();
   setupSearchListeners();
   setupPlaylistButton();
+  setupAlbumButton();
+  setupBackHomeButton(); // <-- Add this line
+  updateAlbumCount();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -103,7 +106,41 @@ function setupPlaylistButton() {
   }
 }
 
-// ...existing code...
+// Store favorite tracks in localStorage
+function addToAlbum(track) {
+  let album = JSON.parse(localStorage.getItem("myAlbum")) || [];
+
+  if (!album.find((t) => t.id === track.id)) {
+    album.push(track);
+    localStorage.setItem("myAlbum", JSON.stringify(album));
+    showToast("Added to your Album!");
+  } else {
+    showToast("This track is already in your Album!", "error");
+  }
+}
+
+// Show favorite tracks when Album button is clicked
+function setupAlbumButton() {
+  const albumBtn = document.getElementById("album-btn");
+  const backBtn = document.getElementById("back-home-btn");
+  albumBtn?.addEventListener("click", function () {
+    // Check if user is signed in
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get("username");
+    if (!username) {
+      showToast("Please sign in to view your Album!", "error");
+      return;
+    }
+    let album = JSON.parse(localStorage.getItem("myAlbum")) || [];
+    if (album.length > 0) {
+      resetTrack();
+      displayTrack(album, true);
+      if (backBtn) backBtn.style.display = "inline-block";
+    } else {
+      showToast("Your Album is empty!", "error");
+    }
+  });
+}
 
 function setupSearchListeners() {
   const inputSearch = document.getElementById("input-search");
@@ -182,6 +219,64 @@ function playTrack(id, name, artistName) {
   modalArtist.innerHTML = artistName;
 }
 
+function displayTrack(data, isAlbum = false) {
+  console.log(data);
+  data.forEach((item) => {
+    const imageUrl = item.album.images[0].url;
+    const name = item.name;
+    const artistName = item.artists.map((item) => item.name).join("- ");
+    const element = document.createElement("div");
+    element.className = "track-card";
+    element.innerHTML = `
+      <div class="track-card-container">
+        <img src="${imageUrl}" alt="">
+        <h3>${truncateText(name, 20)}</h3>
+        <p>${truncateText(artistName, 10)}</p>
+        ${
+          isAlbum
+            ? `<button class="delete-btn" title="Remove from Album" style="background:none; border:none; cursor:pointer; font-size:20px; color: White;"><i class='bx bx-trash-alt'></i></button>`
+            : `<button class="love-btn" title="Add to Album" style="background:none;border:none;cursor:pointer;font-size:20px;color:#fff;">&#10084;</button>`
+        }
+      </div>
+    `;
+    const trackSection = document.getElementById("track-section");
+    trackSection.appendChild(element);
+
+    if (isAlbum) {
+      // Delete from album
+      const deleteBtn = element.querySelector(".delete-btn");
+      deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        deleteFromAlbum(item.id);
+        element.remove();
+        updateAlbumCount();
+      });
+      // Play track on card click (not on delete)
+      element.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("delete-btn")) {
+          playTrack(item.id, name, artistName);
+        }
+      });
+    } else {
+      // Play track on card click (not on love)
+      element.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("love-btn")) {
+          playTrack(item.id, name, artistName);
+        }
+      });
+      // Add to album
+      const loveBtn = element.querySelector(".love-btn");
+      loveBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        addToAlbum(item);
+        loveBtn.style.color = "red";
+        loveBtn.disabled = true;
+        updateAlbumCount();
+      });
+    }
+  });
+}
+
 function closeModal() {
   const modal = document.getElementById("modal");
   modal.style.display = "none";
@@ -235,4 +330,52 @@ async function getSpotifyToken() {
     console.log(error);
     return null;
   }
+}
+
+function updateAlbumCount() {
+  const album = JSON.parse(localStorage.getItem("myAlbum")) || [];
+  const countSpan = document.getElementById("album-count");
+  if (countSpan) countSpan.textContent = album.length;
+}
+
+function deleteFromAlbum(trackId) {
+  let album = JSON.parse(localStorage.getItem("myAlbum")) || [];
+  album = album.filter((t) => t.id !== trackId);
+  localStorage.setItem("myAlbum", JSON.stringify(album));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  updateAlbumCount();
+});
+
+function setupBackHomeButton() {
+  const backBtn = document.getElementById("back-home-btn");
+  if (!backBtn) return;
+
+  backBtn.addEventListener("click", function () {
+    // Hide the button
+    backBtn.style.display = "none";
+    // Show the default tracks
+    resetTrack();
+    initialApp();
+  });
+}
+
+function showToast(message, type = "info") {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.style.display = "block";
+  toast.style.background =
+    type === "error"
+      ? "linear-gradient(90deg,#ff4d4d,#ffb677)"
+      : "linear-gradient(90deg,#c677ff,#78dbff)";
+  toast.style.color = "#fff";
+  toast.style.opacity = "1";
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 300);
+  }, 1800);
 }
